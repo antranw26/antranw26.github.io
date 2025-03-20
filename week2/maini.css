@@ -1,0 +1,23 @@
+h1 {
+    color: rgb(9, 6, 35);
+
+}
+
+.ditmemay {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#concho{
+    font-style: italic;
+}
+
+#concho:hover{
+    font-size: 50px;
+}
+
+body {
+    background-color: rgb(111, 39, 212);
+    margin: 10em;
+    color: aliceblue;
+    text-align: center;
+}
