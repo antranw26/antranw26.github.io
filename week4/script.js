@@ -10,3 +10,4 @@ let Newname = prompt("what is your name");
 console.log("hello", Newname);
 let myCity = "Mel";
 console.log("hello", Newname, myCity);
+// if you know the value is goin to change define it using const
