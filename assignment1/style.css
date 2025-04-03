@@ -1,3 +1,4 @@
+/* styling for the box */
 .box {
   width: 80%;
   padding: 20px;
@@ -6,9 +7,9 @@
   margin-bottom: 30px;
   border-radius: 20px;
 }
-
+/* background are fixed on scroll */
 body {
-  background-color: rgb(207, 202, 255);
+  background-attachment: fixed;
 }
 h1,
 h2 {
@@ -19,7 +20,7 @@ p,
 ol {
   color: rgb(0, 0, 0);
 }
-
+/* styling for the questions boxes */
 .questions {
   margin-bottom: 20px;
   padding: 15px;
@@ -27,7 +28,7 @@ ol {
   background-color: #f0e7ff;
   transition: ease-in-out 0.2s;
 }
-
+/* hover animation for each questions box  */
 .questions:hover {
   transform: translateY(-2px);
   box-shadow: 0px 5px 15px rgba(90, 103, 216, 0.3);
