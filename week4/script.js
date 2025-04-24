@@ -38,6 +38,7 @@ console.log("hi, i am", name);
 let Newname = prompt("what is your name");
 console.log("hello", Newname);
 //declare a variable called myName to contain my name
+
 let myCity = "Mel";
 console.log("hello", Newname, myCity);
 // if you know the value is not goin to change define it using const or else use let//
