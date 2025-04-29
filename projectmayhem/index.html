@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <h1>Study Music </h1>
+    </header>
+
+    <main class="container">
+      <!-- Media Player Section -->
+      <div class="media-player">
+        <video id="custom-video-player">
+          <source
+            src="https://www.dropbox.com/scl/fi/7eh8u01dmmx8d5alrhs3g/la-petite-fille-de-la-mer-vangelis-slowed-reverb.mp4?rlkey=lpz12n2ac4ssklyeqqx8064ue&st=369qh8kw&dl=1"
+            type="video/mp4"
+          />
+        </video>
+        <div class="custom-controls">
+        <div class="video-buttons">
+            <button id="play-pause-btn">
+                <img
+                  id="play-pause-img"
+                  src="https://img.icons8.com/ios-glyphs/30/play--v2.png"
+                  alt="Play Button"
+    
+                />
+              </button>
+              
+                <button id="mute-unmute-button">
+                  <img
+                    id="mute-unmute-img"
+                    src="https://img.icons8.com/ios-glyphs/30/high-volume--v2.png"
+                    alt="Mute/Unmute"
+                  />
+                </button>
+            </button>
+            <button id="replay-button">
+              <img
+                src="https://img.icons8.com/ios-glyphs/30/replay.png"
+                alt="Replay"
+              />
+            </button>
+        </div>
+      
+          <div class="progress-bar">
+            <span id="progress-bar-fill"></span>
+          </div>
+
+          <div class="timer-select">
+            <label for="timer-select">Study Timer:</label>
+            <select id="timer-select">
+              <option value="0">None</option>
+              <option value="600">10 min</option>
+              <option value="900">15 min</option>
+              <option value="1500">25 min</option>
+            </select>
+        </div>
+        <div>
+            <label for="theme-select">Theme Select</label>
+            <select name="theme" id="theme-select">
+              <option
+                value="https://i.pinimg.com/736x/0c/91/e7/0c91e79c4024d00d4f590a0fa089e7e0.jpg"
+              >
+                Afternoon Window
+              </option>
+              <option
+                value="https://i.pinimg.com/736x/69/db/57/69db57560a09d039998a379acceac5f0.jpg"
+              >
+                Cloudy Windfield
+              </option>
+              <option
+                value="https://i.pinimg.com/736x/20/14/05/20140510c7943e3f4396aea45f724147.jpg"
+              >
+                Rain Forest
+              </option>
+            </select>
+          </div>
+      </div>
+
+      <!-- Additional Content Section -->
+      <section>
+        <h2>Additional Content</h2>
+        <p>This is where you can showcase any other relevant content.</p>
+        <!-- Add more content as needed -->
+      </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+      <p>&copy; 2024 Media Player Website. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
