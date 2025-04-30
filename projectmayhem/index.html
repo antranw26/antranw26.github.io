@@ -7,18 +7,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <!-- I used a font family on google font for the website, the fonts are handwritten fonts for a calming aesthetic and the bold font for the heading -->
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
     
   </head>
   <body>
-    <!-- Header Section -->
+    <!-- header -->
     <header>
-      <h1>Study Music </h1>
+      <h1>Cozy Desk </h1>
     </header>
-
+<!-- decided to give the website the name "Cozy desk" since it provoke a calm and a relaxing place for studying -->
     <main class="container">
       <!-- Media Player Section -->
       <div class="media-player">
@@ -28,7 +31,10 @@
             type="video/mp4"
           />
         </video>
-        <div class="custom-controls">
+        <!-- a video of the song la petite fille de la mer was added since i figure its much more appropriate than the music video given -->
+         <!-- here's the div class for all the controls in the website -->
+        <div class="custom-controls"> 
+          <!-- a different div just for the controls that control the video itself -->
         <div class="video-buttons">
             <button id="play-pause-btn">
                 <img
@@ -37,6 +43,7 @@
                   alt="Play Button"
     
                 />
+                <!-- this is the source for the play pause button and all the functions buttons below -->
               </button>
               
                 <button id="mute-unmute-button">
@@ -54,11 +61,12 @@
               />
             </button>
         </div>
-      
+      <!-- a different div just for the progress bar and the progress bar fill for me to easier customize and function it in css and javascript -->
           <div class="progress-bar">
             <span id="progress-bar-fill"></span>
           </div>
-
+          <!-- i decided to add a study timer feature for the website so i added another div specifically for it, 
+           i have to watch tutorial to add this one but unfortunately i havent been able to make it to actually work with javascript yet -->
           <div class="timer-select">
             <label for="timer-select">Study Timer:</label>
             <select id="timer-select">
@@ -68,13 +76,15 @@
               <option value="1500">25 min</option>
             </select>
         </div>
+        <!-- I did look through a few study websites and was inspired to do a theme change for the website so I watched so tutorial and 
+         try to create the same function -->
         <div>
             <label for="theme-select">Theme Select</label>
             <select name="theme" id="theme-select">
               <option
                 value="https://i.pinimg.com/736x/0c/91/e7/0c91e79c4024d00d4f590a0fa089e7e0.jpg"
               >
-                Afternoon Window
+                Afternoon Window  
               </option>
               <option
                 value="https://i.pinimg.com/736x/69/db/57/69db57560a09d039998a379acceac5f0.jpg"
@@ -88,19 +98,19 @@
               </option>
             </select>
           </div>
+          <!-- here are the few themes with the pictures i found on pinterest to further enhance the user experience -->
       </div>
 
-      <!-- Additional Content Section -->
+      <!--This is an additional introduction to the music study website-->
       <section>
-        <h2>Additional Content</h2>
-        <p>This is where you can showcase any other relevant content.</p>
-        <!-- Add more content as needed -->
+        <h2>Why Use Relaxation Music?</h2>
+        <p>Music helps reduce anxiety, improve focus, and enhance memory retention during study sessions.</p>
       </section>
     </main>
 
     <!-- Footer Section -->
     <footer>
-      <p>&copy; 2024 Media Player Website. All rights reserved.</p>
+      <p>&copy; 2025 Cozy Desk Website. All rights reserved.</p>
     </footer>
   </body>
 </html>
