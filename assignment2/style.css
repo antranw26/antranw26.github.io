@@ -1,29 +1,3 @@
-/* body {
-  display: flex;
-  margin: auto;
-  align-items: center;
-  background-color: rgb(227, 205, 255);
-  font-family: "Caveat", cursive;
-  font-optical-sizing: auto;
-  font-weight: weight;
-  font-style: normal;
-}
-
-h1 {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 800;
-  font-style: normal;
-  text-align: center;
-  color: rgb(40, 8, 58);
-}
-
-video {
-  border-radius: 20px;
-}
-.controls {
-  gap: 10px;
-  padding: 10px;
-} */
 body {
   margin: 0;
   font-family: "Quicksand", sans-serif;
@@ -181,3 +155,9 @@ footer {
   color: #b6a998;
   /* Gentle footer with soft beige color for a calming closure to the page */
 }
+/* The visual design of this website follows a warm, soft, and calming aesthetic intended to create a relaxing environment for focused studying.
+The background uses cozy, nature-inspired images like afternoon windows or misty fields, evoking a peaceful, homey workspace. Soft brown tones 
+(#4b4139, #e3b7a589, and #d9cfc1) dominate the color palette, creating a sense of warmth and comfort.
+ These hues are complemented by subtle shadows and rounded corners to make the interface feel smooth and inviting.
+ The typefaces combine a clean sans-serif font (Quicksand) for readability and a handwritten font (Caveat) for a personal, relaxed touch.
+  */

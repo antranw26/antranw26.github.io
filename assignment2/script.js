@@ -76,5 +76,10 @@ themeSelector.addEventListener("change", changeTheme);
 
 // Function to apply selected theme image as page background
 function changeTheme(event) {
-  document.body.style.backgroundImage = `url('${event.target.value}')`;
+  document.body.style.backgroundImage = `url('${event.target.value}')`; // select the value that the theme selector is using, so i dont have to use if/else
 }
+// The JavaScript in this project enhances interactivity and usability by creating a fully functional custom video player.
+// It controls basic playback features like play, pause, mute, unmute, and replay, giving users intuitive control over their study session media.
+// The script also dynamically updates the progress bar in real-time, visually showing how much of the video has played.
+// A theme-switching feature allows users to change the background to match their mood or environment, supporting personalization and comfort.
+// The website was designed to be simple and calm with usability, with a relaxed atmosphere of the website
