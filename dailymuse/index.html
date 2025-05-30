@@ -1,0 +1,40 @@
+<!-- =========================================================
+     index.html  —  Daily Muse Flip‑Card Prototype
+     Author: (your name) | Date: 18 May 2025
+     ========================================================= -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Muse Flip‑Card</title>
+
+    <!-- Link our standalone stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- 3‑D flip card -->
+    <div
+      class="card"
+      tabindex="0"
+      aria-label="Daily art card. Press Space or click to flip."
+    >
+      <div class="inner">
+        <!-- Front: artwork + date badge -->
+        <div class="face front" id="front" data-date=""></div>
+
+        <!-- Back: quote, author, next button -->
+        <div class="face back" id="back">
+          <p class="quote" id="quote"></p>
+          <p class="author" id="author"></p>
+          <button class="btn-next" id="nextBtn" aria-label="Show next quote">
+            Next ➜
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Load the interaction logic -->
+    <script src="daily-muse.js"></script>
+  </body>
+</html>

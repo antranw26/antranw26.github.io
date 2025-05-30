@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paws Of Wisdom</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="logo">Paws Of Wisdom</h1>
+      <h2 class="sub">Paws Of Wisdom</h2>
+    </header>
+
+    <main class="card-container">
+      <section class="card-column">
+        <div class="card" id="deckCard" tabindex="0" draggable="true">
+          <div class="card-face card-back">
+            <img src="fotos/cardback.png" alt="Cat Back" />
+          </div>
+        </div>
+      </section>
+
+      <section class="card-column">
+        <h3>today's card</h3>
+        <div class="card-flip">
+          <div class="card" id="todayCard" tabindex="0">
+            <div class="card-inner">
+              <div class="card-face card-back">
+                <img src="fotos/cardback.png" alt="Cat Back" />
+              </div>
+              <div class="card-face card-front">
+                <div id="catImage" style="font-size: 3rem"></div>
+                <p id="quote"></p>
+                <p id="author" style="margin-top: 0.5em"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card-column">
+        <h3>shuffle</h3>
+        <div class="card-empty" id="shuffleZone" tabindex="0"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Paws of Wisdom Website. All rights reserved.</p>
+      <div id="announcements" style="margin-top: 1em; color: #ccc"></div>
+    </footer>
+
+    <script>
+      const quotes = [
+        {
+          text: "Darling, the world may toss yarn at your paws, but composure means choosing which threads are worth the chase.",
+          author: "Marcus Aurelius",
+          catEmoji: "🐱",
+        },
+        {
+          text: "A wise cat knows that the warmest sunbeam is not always where others gather.",
+          author: "Epictetus",
+          catEmoji: "😺",
+        },
+        {
+          text: "The fishbowl you cannot reach teaches more than the treat you devour.",
+          author: "Seneca",
+          catEmoji: "🙀",
+        },
+        {
+          text: "Purr not for applause, but for the contentment that comes from within.",
+          author: "Marcus Aurelius",
+          catEmoji: "😸",
+        },
+        {
+          text: "Even the most comfortable windowsill cannot shield you from life's storms.",
+          author: "Epictetus",
+          catEmoji: "😿",
+        },
+        {
+          text: "The mouse you chase is often less important than the peace you lose pursuing it.",
+          author: "Seneca",
+          catEmoji: "🐈",
+        },
+        {
+          text: "Nine lives are not granted to waste on trivial concerns.",
+          author: "Marcus Aurelius",
+          catEmoji: "😻",
+        },
+      ];
+
+      let currentQuoteIndex = 0;
+      let isCardFlipped = false;
+
+      function getTodaysQuote() {
+        const today = new Date();
+        const dayOfYear = Math.floor(
+          (today - new Date(today.getFullYear(), 0, 0)) / 86400000
+        );
+        return quotes[dayOfYear % quotes.length];
+      }
+
+      function updateCardColors(catEmoji) {
+        const colorSchemes = {
+          "🐱": { primary: "#FF6B6B", secondary: "#FF4757", accent: "#FF3838" },
+          "😺": { primary: "#4ECDC4", secondary: "#45B7AF", accent: "#3CA29C" },
+          "🙀": { primary: "#FFA726", secondary: "#FF9800", accent: "#F57C00" },
+          "😸": { primary: "#AB47BC", secondary: "#9C27B0", accent: "#7B1FA2" },
+          "😿": { primary: "#5C6BC0", secondary: "#3F51B5", accent: "#303F9F" },
+          "🐈": { primary: "#66BB6A", secondary: "#4CAF50", accent: "#388E3C" },
+          "😻": { primary: "#EF5350", secondary: "#F44336", accent: "#D32F2F" },
+        };
+
+        const scheme = colorSchemes[catEmoji] || colorSchemes["🐱"];
+        const cardFront = document.querySelector(".card-front");
+        cardFront.style.background = `linear-gradient(135deg, ${scheme.primary} 0%, ${scheme.secondary} 50%, ${scheme.accent} 100%)`;
+      }
+
+      function initializeTodaysCard() {
+        const todaysQuote = getTodaysQuote();
+        currentQuoteIndex = quotes.indexOf(todaysQuote);
+
+        document.getElementById("quote").textContent = `"${todaysQuote.text}"`;
+        document.getElementById(
+          "author"
+        ).textContent = `— ${todaysQuote.author}`;
+        document.getElementById("catImage").textContent = todaysQuote.catEmoji;
+
+        updateCardColors(todaysQuote.catEmoji);
+      }
+
+      function flipCard() {
+        const card = document.getElementById("todayCard");
+        const announcements = document.getElementById("announcements");
+
+        card.classList.toggle("flipped");
+        isCardFlipped = !isCardFlipped;
+
+        announcements.textContent = isCardFlipped
+          ? "Card flipped to reveal wisdom"
+          : "Card flipped back to front";
+      }
+
+      function shuffleDeck() {
+        currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+        const newQuote = quotes[currentQuoteIndex];
+
+        document.getElementById("quote").textContent = `"${newQuote.text}"`;
+        document.getElementById("author").textContent = `— ${newQuote.author}`;
+        document.getElementById("catImage").textContent = newQuote.catEmoji;
+
+        updateCardColors(newQuote.catEmoji);
+
+        if (!isCardFlipped) {
+          flipCard();
+        }
+
+        document.getElementById("announcements").textContent =
+          "Deck shuffled, new wisdom revealed";
+      }
+
+      let draggedElement = null;
+
+      function handleDragStart(e) {
+        draggedElement = e.target;
+        e.target.classList.add("dragging");
+        e.dataTransfer.effectAllowed = "move";
+        document.getElementById("announcements").textContent =
+          "Card picked up for dragging";
+      }
+
+      function handleDragEnd(e) {
+        e.target.classList.remove("dragging");
+        draggedElement = null;
+      }
+
+      function handleDragOver(e) {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = "move";
+      }
+
+      function handleDragEnter(e) {
+        e.preventDefault();
+        e.target.classList.add("drag-over");
+      }
+
+      function handleDragLeave(e) {
+        e.target.classList.remove("drag-over");
+      }
+
+      function handleDrop(e) {
+        e.preventDefault();
+        e.target.classList.remove("drag-over");
+
+        if (draggedElement && e.target.id === "shuffleZone") {
+          shuffleDeck();
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        initializeTodaysCard();
+
+        const todayCard = document.getElementById("todayCard");
+        todayCard.addEventListener("click", flipCard);
+        todayCard.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            flipCard();
+          }
+        });
+
+        const deckCard = document.getElementById("deckCard");
+        deckCard.addEventListener("dragstart", handleDragStart);
+        deckCard.addEventListener("dragend", handleDragEnd);
+
+        deckCard.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            shuffleDeck();
+          }
+        });
+
+        const shuffleZone = document.getElementById("shuffleZone");
+        shuffleZone.addEventListener("dragover", handleDragOver);
+        shuffleZone.addEventListener("dragenter", handleDragEnter);
+        shuffleZone.addEventListener("dragleave", handleDragLeave);
+        shuffleZone.addEventListener("drop", handleDrop);
+        shuffleZone.addEventListener("click", shuffleDeck);
+      });
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.body.style.setProperty("--animation-duration", "0s");
+      }
+    </script>
+  </body>
+</html>

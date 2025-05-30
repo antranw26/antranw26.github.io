@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paws of Wisdom</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="mountains">
+      <div class="mountain"></div>
+      <div class="mountain"></div>
+      <div class="mountain"></div>
+      <div class="mountain"></div>
+      <div class="mountain"></div>
+    </div>
+
+    <div class="container">
+      <h1 class="title">Paws Of Wisdom</h1>
+      <h2 class="subtitle">Daily Cat Philosophy</h2>
+
+      <div class="game-area">
+        <div class="card-section">
+          <div
+            class="card deck-card"
+            draggable="true"
+            id="deckCard"
+            tabindex="0"
+            role="button"
+            aria-label="Drag this card to shuffle deck"
+          >
+            <div class="card-face card-back">
+              <div class="ornate-border">
+                <div class="corner-ornament top-left"></div>
+                <div class="corner-ornament top-right"></div>
+                <div class="corner-ornament bottom-left"></div>
+                <div class="corner-ornament bottom-right"></div>
+                <div class="side-ornaments left">☽ ✦ ☾ ✦ ☽</div>
+                <div class="side-ornaments right">☽ ✦ ☾ ✦ ☽</div>
+                <div class="side-ornaments top">☽ ✦ ☾ ✦ ☽ ✦ ☾ ✦ ☽</div>
+                <div class="side-ornaments bottom">☽ ✦ ☾ ✦ ☽ ✦ ☾ ✦ ☽</div>
+              </div>
+              <div class="cat-silhouette">
+                <div class="cat-eyes">
+                  <div class="cat-eye"></div>
+                  <div class="cat-eye"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-section today-card-hover">
+          <h3 class="section-title">today's card</h3>
+          <div
+            class="card"
+            id="todayCard"
+            tabindex="0"
+            role="button"
+            aria-label="Click to flip today's wisdom card"
+          >
+            <div class="card-face card-back">
+              <div class="ornate-border">
+                <div class="corner-ornament top-left"></div>
+                <div class="corner-ornament top-right"></div>
+                <div class="corner-ornament bottom-left"></div>
+                <div class="corner-ornament bottom-right"></div>
+                <div class="side-ornaments left">☽ ✦ ☾ ✦ ☽</div>
+                <div class="side-ornaments right">☽ ✦ ☾ ✦ ☽</div>
+                <div class="side-ornaments top">☽ ✦ ☾ ✦ ☽ ✦ ☾ ✦ ☽</div>
+                <div class="side-ornaments bottom">☽ ✦ ☾ ✦ ☽ ✦ ☾ ✦ ☽</div>
+              </div>
+              <div class="cat-silhouette">
+                <div class="cat-eyes">
+                  <div class="cat-eye"></div>
+                  <div class="cat-eye"></div>
+                </div>
+              </div>
+            </div>
+            <div class="card-face card-front">
+              <div class="cat-image" id="catImage"></div>
+              <div class="quote" id="quote"></div>
+              <div class="author" id="author"></div>
+            </div>
+          </div>
+          <div class="hover-quote" id="hoverQuote">
+            Hover to reveal today's wisdom
+          </div>
+        </div>
+
+        <div class="card-section">
+          <h3 class="section-title">shuffle</h3>
+          <div
+            class="shuffle-zone"
+            id="shuffleZone"
+            role="region"
+            aria-label="Drop zone for shuffling deck"
+          >
+            <div class="shuffle-icon">🔄</div>
+            <div class="shuffle-text">Drop card here<br />to shuffle</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accessibility-text" aria-live="polite" id="announcements"></div>
+  </body>
+</html>

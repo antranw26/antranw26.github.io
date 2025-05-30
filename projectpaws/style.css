@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap");
+
+body {
+  margin: 0;
+  font-family: "UnifrakturCook", cursive;
+  background: linear-gradient(to bottom, #6e0000, #000);
+  color: white;
+  text-align: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+header {
+  padding-top: 20px;
+}
+
+.logo {
+  font-size: 3em;
+  margin: 0;
+}
+
+.sub {
+  font-size: 2em;
+  color: rgba(255, 255, 255, 0.2);
+  margin-top: -0.5em;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 3em;
+  gap: 3em;
+}
+
+.card-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-column h3 {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+  font-family: "UnifrakturCook", cursive;
+}
+
+/* Card Container & Flip Logic */
+.card {
+  width: 220px;
+  height: 320px;
+  perspective: 1000px;
+  transition: transform 0.3s ease-in-out;
+  transform-origin: center;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+/* Hover Effect */
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.6);
+}
+
+/* Click (Active) Effect */
+.card:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 20px 8px rgba(255, 50, 50, 0.9);
+}
+
+/* Faces */
+.card-face,
+.card-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 10px red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.card-back {
+  background-color: #0b0b2e;
+}
+
+.card-front {
+  background: linear-gradient(to bottom, #d30000, #000);
+  transform: rotateY(180deg);
+}
+
+/* Flip logic */
+.card-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Card Images */
+.card-face img {
+  width: 215px;
+  height: auto;
+  margin-bottom: 0.5em;
+}
+
+/* Placeholder Card */
+.card-empty {
+  width: 220px;
+  height: 320px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px red;
+  border: 2px solid #ff4d4d;
+  background: transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+/* Hover Effect for Placeholder */
+.card-empty:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.6);
+}
+
+/* Drag Feedback */
+.dragging {
+  opacity: 0.6;
+  transform: scale(0.95);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Drop Target Feedback */
+#shuffle-zone.drop-hover {
+  border: 2px dashed #fff;
+  box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.6);
+  transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+}
+
+.ending-scene {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  font-size: 1.5em;
+  color: #fff;
+  margin-top: 1.5em;
+  pointer-events: none;
+}
+
+.ending-scene.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

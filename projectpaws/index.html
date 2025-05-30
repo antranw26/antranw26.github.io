@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paws Of Wisdom</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1 class="logo">Paws Of Wisdom</h1>
+      <h2 class="sub">Paws Of Wisdom</h2>
+    </header>
+
+    <main class="card-container">
+      <section class="card-column">
+        <h3>your cards</h3>
+        <div class="card">
+          <div class="card-face card-back" draggable="true">
+            <img src="fotos/cardback.png" alt="Cat Back" />
+          </div>
+        </div>
+      </section>
+
+      <section class="card-column">
+        <h3>today's card</h3>
+        <div class="card-flip">
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-face card-back">
+                <img src="fotos/cardback.png" alt="Cat Back" />
+              </div>
+              <div class="card-face card-front">
+                <img src="fotos/quote 1.png" alt="Stoic Cat" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card-column">
+        <h3>shuffle</h3>
+        <div class="card-empty"></div>
+        <div class="shuffle-icon">🔄</div>
+        <div class="shuffle-text">Drop card here<br />to shuffle</div>
+      </section>
+    </main>
+    <div id="ending-scene" class="ending-scene">
+      <p>That’s today’s card of wisdom, comeback tommorrow 🐾</p>
+    </div>
+  </body>
+</html>
