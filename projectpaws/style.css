@@ -1,149 +1,185 @@
+/* Importing a unique gothic-style font from Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap");
 
+/* Base styles for the whole page */
 body {
   margin: 0;
-  font-family: "UnifrakturCook", cursive;
-  background: linear-gradient(to bottom, #6e0000, #000);
+  font-family: "UnifrakturCook", cursive; /* gives a handwritten, stylized look */
+  background: linear-gradient(
+    to bottom,
+    #6e0000,
+    #000
+  ); /* dark red fading into black */
   color: white;
   text-align: center;
-  height: 100vh;
-  overflow: hidden;
+  height: 100dvh; /* makes the body fill the viewport height */
+  overflow: hidden; /* hides scrollbars so the UI looks clean */
 }
 
+/* Adds some space at the top of the page */
 header {
   padding-top: 20px;
 }
 
+/* Main title style */
 .logo {
   font-size: 3em;
   margin: 0;
 }
 
+/* Subtitle under the logo, lighter in color to look subtle */
 .sub {
   font-size: 2em;
   color: rgba(255, 255, 255, 0.2);
   margin-top: -0.5em;
 }
 
+/* This sets up a two-column layout for the cards */
 .card-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   margin-top: 3em;
-  gap: 3em;
+  gap: 3em; /* space between the columns */
 }
 
+/* Styles each column of cards vertically */
 .card-column {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* Headings for the shuffle and today’s card sections */
 .card-column h3 {
   font-size: 1.2em;
   margin-bottom: 1em;
-  font-family: "UnifrakturCook", cursive;
 }
 
-/* Card Container & Flip Logic */
+/* Outer card element: sets up 3D space for flipping */
 .card {
   width: 220px;
   height: 320px;
   perspective: 1000px;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   transform-origin: center;
 }
 
+/* Inner wrapper that will actually rotate (flip) */
 .card-inner {
   width: 100%;
   height: 100%;
   position: relative;
-  transition: transform 0.6s;
+  transition: transform 0.3s;
   transform-style: preserve-3d;
 }
 
-/* Hover Effect */
+/* When hovering over the card, it grows slightly and gets a soft glow */
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.6);
+  opacity: 0.8;
+  filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.6));
 }
 
-/* Click (Active) Effect */
-.card:active {
-  transform: scale(0.98);
-  box-shadow: 0 0 20px 8px rgba(255, 50, 50, 0.9);
-}
+/* Placeholder for click effects (currently unused) */
+/* .card:active {
+} */
 
-/* Faces */
+/* These are the two sides of the card, front and back */
 .card-face,
 .card-back {
+  background-image: url("fotos/cardback.png"); /* card image background */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 100%;
   height: 100%;
   position: absolute;
-  backface-visibility: hidden;
+  backface-visibility: hidden; /* hides the back when flipped */
   border-radius: 20px;
-  box-shadow: 0 0 10px red;
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 1));
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1em;
   box-sizing: border-box;
+  overflow: hidden;
+  transition: opacity 0.2s ease,
+    transform var(--transition-bias) cubic-bezier(0.76, 0, 0.24, 1);
+  transform: rotate(var(--rotation-bias)); /* used dynamically in JS */
 }
 
+/* Back of the card has a solid dark color behind the image */
 .card-back {
   background-color: #0b0b2e;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.2));
 }
 
+/* Give higher stacking order to active draggable cards */
+.card-column:has(.card-face[draggable="true"]) {
+  z-index: 10;
+}
+
+/* Prioritize empty card areas visually */
+.card-column:has(.card-empty) {
+  z-index: 11;
+}
+
+/* The front of the card, flips 180° to face user */
 .card-front {
   background: linear-gradient(to bottom, #d30000, #000);
   transform: rotateY(180deg);
 }
 
-/* Flip logic */
+/* Trigger flip animation */
 .card-inner.flipped {
   transform: rotateY(180deg);
 }
 
-/* Card Images */
+/* Styling for images inside the card */
 .card-face img {
   width: 215px;
   height: auto;
   margin-bottom: 0.5em;
 }
 
-/* Placeholder Card */
+/* Placeholder card styling for shuffle zone */
 .card-empty {
   width: 220px;
   height: 320px;
   border-radius: 20px;
-  box-shadow: 0 0 10px red;
+  filter: drop-shadow(0 0 10px rgba(255, 0, 0, 0.8));
   border: 2px solid #ff4d4d;
   background: transparent;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
 }
 
-/* Hover Effect for Placeholder */
+/* Highlight when hovering over the empty shuffle card */
 .card-empty:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.6);
+  transform: scale(1);
+  box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.8);
 }
 
-/* Drag Feedback */
+/* Style applied while a card is being dragged */
 .dragging {
-  opacity: 0.6;
-  transform: scale(0.95);
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 
-/* Drop Target Feedback */
+/* Slightly faded look when not dragging */
+.notdragging {
+  opacity: 0.6;
+}
+
+/* Visual feedback when hovering over a drop area */
 #shuffle-zone.drop-hover {
   border: 2px dashed #fff;
   box-shadow: 0 0 15px 5px rgba(255, 0, 0, 0.6);
-  transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out, border 0.3s ease-in-out;
 }
 
+/* Fade-in animation for the end-of-day message */
 .ending-scene {
   opacity: 0;
   transform: translateY(20px);
@@ -151,10 +187,10 @@ header {
   font-size: 1.5em;
   color: #fff;
   margin-top: 1.5em;
-  pointer-events: none;
+  pointer-events: none; /* makes sure the user can't interact with it */
 }
 
+/* When the ending scene becomes active, it fades in */
 .ending-scene.visible {
   opacity: 1;
-  transform: translateY(0);
 }

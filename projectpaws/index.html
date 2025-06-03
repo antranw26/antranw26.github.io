@@ -4,48 +4,93 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Paws Of Wisdom</title>
+
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="fotos/cat.png" type="image/x-icon" />
     <script src="script.js" defer></script>
   </head>
   <body>
+    <!-- Site header: Main title and live clock/time element -->
     <header>
       <h1 class="logo">Paws Of Wisdom</h1>
-      <h2 class="sub">Paws Of Wisdom</h2>
+      <h2 class="sub">
+        randomly flavourful at <span class="current-time"></span>
+        <!-- current time will be injected here by JS -->
+      </h2>
     </header>
 
+    <!-- Main content area: two columns for shuffle and daily card -->
     <main class="card-container">
+      <!-- First column: Shuffle area where cards can be dropped to reshuffle -->
       <section class="card-column">
-        <h3>your cards</h3>
-        <div class="card">
-          <div class="card-face card-back" draggable="true">
-            <img src="fotos/cardback.png" alt="Cat Back" />
+        <h3>shuffle</h3>
+
+        <!-- Visual card area (kind of a placeholder or drop zone) -->
+        <div class="card-empty">
+          <div class="card-face card-back">
+            <!-- Invisible card image just for spacing/layout -->
+            <img src="fotos/cardback.png" alt="Cat Back" style="opacity: 0" />
+
+            <!-- Numeric overlay for card count -->
+            <div
+              class="num-indicator"
+              style="position: fixed; top: 12%; color: red; font-size: 60px"
+            ></div>
+
+            <!-- Caption text underneath the card number -->
+            <div
+              style="
+                position: fixed;
+                top: 30%;
+                color: rgba(255, 255, 255, 0.8);
+                font-size: 20px;
+              "
+            >
+              card[s]
+            </div>
           </div>
         </div>
+
+        <!-- Visual shuffle icon + instruction for user interaction -->
+        <br />
+        <div class="shuffle-icon">🔄</div>
+        <div class="shuffle-text">Drop card here<br />to shuffle</div>
       </section>
 
+      <!-- Second column: This is where the selected card of the day appears -->
       <section class="card-column">
         <h3>today's card</h3>
+
+        <!-- Card flip animation structure with styled red border and transparency -->
         <div class="card-flip">
-          <div class="card">
-            <div class="card-inner">
+          <div
+            class="card"
+            style="
+              border: 2px solid red;
+              border-radius: 20px;
+              background-color: rgb(255, 0, 0, 0.2);
+            "
+          >
+            <!-- Card is draggable - part of interaction flow -->
+            <div class="card-inner" draggable="true">
+              <!-- Front of the card (could be dynamically filled with a cat image/quote) -->
+              <div class="card-face card-front"></div>
+
+              <!-- Back of the card (visually hidden) -->
               <div class="card-face card-back">
-                <img src="fotos/cardback.png" alt="Cat Back" />
-              </div>
-              <div class="card-face card-front">
-                <img src="fotos/quote 1.png" alt="Stoic Cat" />
+                <img
+                  src="fotos/cardback.png"
+                  alt="Cat Back"
+                  style="opacity: 0"
+                />
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      <section class="card-column">
-        <h3>shuffle</h3>
-        <div class="card-empty"></div>
-        <div class="shuffle-icon">🔄</div>
-        <div class="shuffle-text">Drop card here<br />to shuffle</div>
-      </section>
     </main>
+
+    <!-- Final message area, appears after a card is drawn (ending slide) -->
     <div id="ending-scene" class="ending-scene">
       <p>That’s today’s card of wisdom, comeback tommorrow 🐾</p>
     </div>
