@@ -110,19 +110,6 @@ function initializeTodaysCard() {
   updateCardColors(quoteData.catEmoji);
 }
 
-// ===========================================
-// CARD ANIMATION FUNCTIONS
-// ===========================================
-
-// NOTE: This flip function is commented out - might be old version
-// function flipCard() {
-//   const innerCard = document.querySelector(".card-inner");
-//   if (innerCard) {
-//     innerCard.classList.toggle("flipped");
-//     isCardFlipped = !isCardFlipped;
-//   }
-// }
-
 /**
  * Main shuffle function - creates the card shuffling animation and updates content
  * Tilts all cards in the deck, selects new random quote, updates display

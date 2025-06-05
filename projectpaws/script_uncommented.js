@@ -3,17 +3,17 @@ let quotes = [];
 async function loadDataFromJson() {
   let quotesTwo = await fetch("./quote-data.json");
   let toReturn = await quotesTwo.json();
-  return toReturn
+  return toReturn;
 }
 
-const TILT_LEVEL = () => (0.5-Math.random())*8;
+const TILT_LEVEL = () => (0.5 - Math.random()) * 8;
 const SHUFFLE_DELAY = 0.04;
 
 let currentQuoteIndex = 0;
 let isCardFlipped = false;
 
 let offsetX = null;
-let offsetY = null; 
+let offsetY = null;
 
 function getTodaysQuote() {
   const today = new Date();
@@ -59,14 +59,6 @@ function initializeTodaysCard() {
   updateCardColors(quoteData.catEmoji);
 }
 
-// function flipCard() {
-//   const innerCard = document.querySelector(".card-inner");
-//   if (innerCard) {
-//     innerCard.classList.toggle("flipped");
-//     isCardFlipped = !isCardFlipped;
-//   }
-// }
-
 function shuffleDeck() {
   tiltShuffleCards(
     document.querySelectorAll(".card-empty .card-face"),
@@ -76,7 +68,10 @@ function shuffleDeck() {
   // console.log("Cards shuffled");
   if (!isCardFlipped) {
     // currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
-    currentQuoteIndex = Math.min(Math.floor(Math.random()*(quotes.length)), quotes.length - 1);
+    currentQuoteIndex = Math.min(
+      Math.floor(Math.random() * quotes.length),
+      quotes.length - 1
+    );
     const quoteData = quotes[currentQuoteIndex];
 
     const cardFront = document.querySelector(".card-front");
@@ -93,12 +88,12 @@ function shuffleDeck() {
     updateCardColors(quoteData.catEmoji);
 
     setTimeout(() => {
-        tiltShuffleCards(
+      tiltShuffleCards(
         document.querySelectorAll(".card-empty .card-face"),
         TILT_LEVEL(),
         true
       );
-    }, SHUFFLE_DELAY*10000);
+    }, SHUFFLE_DELAY * 10000);
   }
 }
 
@@ -107,8 +102,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   initializeTodaysCard();
   flipCard();
 
-  document.querySelector(".num-indicator").appendChild(document.createTextNode(quotes.length)); 
-
+  document
+    .querySelector(".num-indicator")
+    .appendChild(document.createTextNode(quotes.length));
 
   const todayCardFront = document.querySelector(".card-flip .card-front");
   const todayCardBack = document.querySelector(".card-flip .card-back");
@@ -116,33 +112,28 @@ document.addEventListener("DOMContentLoaded", async function () {
   const timeshow = document.querySelector(".current-time");
   // Optional drag/drop support if needed
   const deckCard = document.querySelector(".card-inner[draggable='true']");
-  
+
   setInterval(() => {
     let now = new Date();
     timeshow.textContent = `
-      ${String(now.getHours()-12 > 0 ? now.getHours()-12 : now.getHours()).padStart(2, '0')
-      }:${String(now.getMinutes()).padStart(2, '0')
-      }:${String(now.getSeconds()).padStart(2, '0')
-      }${now.getHours() >= 12 ? 'pm' : 'am'
-      }
+      ${String(
+        now.getHours() - 12 > 0 ? now.getHours() - 12 : now.getHours()
+      ).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}:${String(
+      now.getSeconds()
+    ).padStart(2, "0")}${now.getHours() >= 12 ? "pm" : "am"}
     `;
   }, 1000);
 
-  // setInterval(() => {
-  //   flipCard();
-  //   setTimeout(() => {
-  //     handleClickShuffle(shuffleZone, deckCard);
-  //     flipCard();
-  //   }, 1000);
-  // },5000)
-  
   let throttleFlip = false;
 
   // Spawn (x) amount of cards to the shuffle pile for (x) quotes
-  quotes.slice(0,Math.min(6, quotes.length - 1)).forEach((_, i) => {
+  quotes.slice(0, Math.min(6, quotes.length - 1)).forEach((_, i) => {
     let deepFirstCard = firstCard.cloneNode(true);
-    deepFirstCard.setAttribute("style", `--transition-bias: ${i*SHUFFLE_DELAY}s;`);
-    document.querySelector(".card-empty").append(deepFirstCard);  
+    deepFirstCard.setAttribute(
+      "style",
+      `--transition-bias: ${i * SHUFFLE_DELAY}s;`
+    );
+    document.querySelector(".card-empty").append(deepFirstCard);
   });
 
   let allStackedCards = document.querySelectorAll(".card-empty .card-face");
@@ -174,7 +165,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     todayCardBack.addEventListener("click", () => {
       handleClickShuffle(shuffleZone, deckCard);
-    })
+    });
   }
 
   const shuffleZone = document.querySelector(".card-empty");
@@ -189,7 +180,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 
-  
   // const dropDeck = document.querySelector(".card-empty");
   // const cardContainer = document.querySelector(".card:has(.card-face[draggable='true'])");
 
@@ -203,12 +193,15 @@ document.addEventListener("DOMContentLoaded", async function () {
         offsetX = e.clientX - dragCardBound.x;
         offsetY = e.clientY - dragCardBound.y;
       }
-      
-      let newX =  e.clientX - parentBound.x - offsetX;
-      let newY = e.clientY - parentBound.y - offsetY; 
+
+      let newX = e.clientX - parentBound.x - offsetX;
+      let newY = e.clientY - parentBound.y - offsetY;
       // console.log(e.clientX, e.clientY);
-      deckCard.setAttribute("style", `transform: translate(${newX}px, ${newY}px)`)
-    })
+      deckCard.setAttribute(
+        "style",
+        `transform: translate(${newX}px, ${newY}px)`
+      );
+    });
 
     deckCard.addEventListener("dragstart", (e) => {
       deckCard.classList.add("dragging");
@@ -217,18 +210,16 @@ document.addEventListener("DOMContentLoaded", async function () {
     deckCard.addEventListener("dragend", (e) => {
       handleDragShuffle(deckCard, e);
     });
-  
+
     if (shuffleZone) {
       shuffleZone.addEventListener("dragover", (e) => e.preventDefault());
-      
+
       shuffleZone.addEventListener("drop", () => {
-          shuffleDeck();
-          // Apply incremental hover styles dynamically
-        }
-      );
+        shuffleDeck();
+        // Apply incremental hover styles dynamically
+      });
     }
   }
-
 
   let shuffleText = document.querySelector(".shuffle-text");
 
@@ -239,9 +230,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   shuffleText.addEventListener("mouseleave", () => {
     if (allStackedCards) {
-      tiltShuffleCards(allStackedCards,0,true)
+      tiltShuffleCards(allStackedCards, 0, true);
     }
-  })
+  });
 
   // Reduced motion support
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -251,69 +242,87 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 function handleClickShuffle(shuffleZone, deckCard) {
   let shuffleZoneRect = shuffleZone.getBoundingClientRect();
-  handleDragShuffle(deckCard, {clientX: shuffleZoneRect.x, clientY: shuffleZoneRect.y});
+  handleDragShuffle(deckCard, {
+    clientX: shuffleZoneRect.x,
+    clientY: shuffleZoneRect.y,
+  });
   shuffleDeck();
 }
 
 function handleDragShuffle(deckCard, e) {
   deckCard.classList.remove("dragging");
-      
-  let parentBound = deckCard.parentElement.getBoundingClientRect();
-  let newX =  e.clientX - parentBound.x - offsetX;
-  let newY = e.clientY - parentBound.y - offsetY; 
 
+  let parentBound = deckCard.parentElement.getBoundingClientRect();
+  let newX = e.clientX - parentBound.x - offsetX;
+  let newY = e.clientY - parentBound.y - offsetY;
 
   // First, instantly move card to mouse position (no transition)
-  deckCard.setAttribute("style", `transform: translate(${newX}px, ${newY}px); opacity: 0.2;`);
-  
+  deckCard.setAttribute(
+    "style",
+    `transform: translate(${newX}px, ${newY}px); opacity: 0.2;`
+  );
+
   // Then after another small delay, transition back to original position
   setTimeout(() => {
-    deckCard.setAttribute("style", 
+    deckCard.setAttribute(
+      "style",
       `transform: translate(0, 0); 
       transition: transform 0.2s ease-in-out;`
     );
-  }, SHUFFLE_DELAY*10000);
-
+  }, SHUFFLE_DELAY * 10000);
 
   // Reset everything after transition completes
   setTimeout(() => {
     deckCard.removeAttribute("style");
     offsetX = null;
     offsetY = null;
-  }, 200+(SHUFFLE_DELAY*10000)); // Match transition duration + delays
+  }, 200 + SHUFFLE_DELAY * 10000); // Match transition duration + delays
 }
 
-function tiltShuffleCards(stackedCards, tiltValue, reset=false) {
-    if (reset) {
-      stackedCards.forEach((element, key) => {
-        element.setAttribute("style", `--rotation-bias: 0deg; --transition-bias: ${key*SHUFFLE_DELAY}s;`);
-      });
-    } else {
-      stackedCards.forEach((element, key) => {
-        if (key != stackedCards.length - 1) {
-          element.setAttribute("style", `
-            --rotation-bias: ${(key % 2 == 0 ? tiltValue : Math.abs(tiltValue*2))*key}deg;
-            --transition-bias: ${key*SHUFFLE_DELAY}s;
-          `);
-        } else {
-          element.setAttribute("style", `--rotation-bias: ${15*tiltValue}deg; --transition-bias: ${key*SHUFFLE_DELAY}s;`);
-        }
-      });
-    }
+function tiltShuffleCards(stackedCards, tiltValue, reset = false) {
+  if (reset) {
+    stackedCards.forEach((element, key) => {
+      element.setAttribute(
+        "style",
+        `--rotation-bias: 0deg; --transition-bias: ${key * SHUFFLE_DELAY}s;`
+      );
+    });
+  } else {
+    stackedCards.forEach((element, key) => {
+      if (key != stackedCards.length - 1) {
+        element.setAttribute(
+          "style",
+          `
+            --rotation-bias: ${
+              (key % 2 == 0 ? tiltValue : Math.abs(tiltValue * 2)) * key
+            }deg;
+            --transition-bias: ${key * SHUFFLE_DELAY}s;
+          `
+        );
+      } else {
+        element.setAttribute(
+          "style",
+          `--rotation-bias: ${15 * tiltValue}deg; --transition-bias: ${
+            key * SHUFFLE_DELAY
+          }s;`
+        );
+      }
+    });
+  }
 }
 
 function flipCard() {
   const cardInner = document.querySelector(".card-inner");
-  
+
   cardInner.classList.toggle("flipped");
   isCardFlipped = !isCardFlipped;
-  
+
   const endingScene = document.getElementById("ending-scene");
   // Show the ending scene after flip
   if (isCardFlipped) {
     setTimeout(() => {
       endingScene.classList.add("visible");
-    }, SHUFFLE_DELAY*10000); // match card flip duration
+    }, SHUFFLE_DELAY * 10000); // match card flip duration
   } else {
     endingScene.classList.remove("visible");
   }
