@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Little Secret ♡</title>
+    <style>
+      :root {
+        --pink: #e9aeb8;
+        --pink-dark: #bd7888;
+        --pink-pale: #fff1f3;
+        --cream: #fffaf8;
+        --ink: #654b50;
+        --muted: #a88d91;
+        --white: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background:
+          radial-gradient(circle at 15% 15%, #ffe4e9 0, transparent 28%),
+          radial-gradient(circle at 85% 85%, #f8dce2 0, transparent 30%),
+          var(--cream);
+        color: var(--ink);
+        font-family: "Trebuchet MS", Arial, sans-serif;
+      }
+
+      .page {
+        width: min(100%, 760px);
+        text-align: center;
+      }
+
+      .tiny-label {
+        margin: 0 0 12px;
+        color: var(--pink-dark);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(38px, 8vw, 62px);
+        font-weight: 400;
+        letter-spacing: -2px;
+      }
+
+      .subtitle {
+        max-width: 390px;
+        margin: 14px auto 28px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .panel {
+        width: min(100%, 420px);
+        margin: 0 auto;
+        padding: 30px;
+        border: 1px solid #f3dce1;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow: 0 18px 55px rgba(173, 112, 127, 0.1);
+      }
+
+      .heart {
+        margin-bottom: 14px;
+        color: var(--pink-dark);
+        font-size: 27px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 9px;
+        color: var(--pink-dark);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.8px;
+        text-align: left;
+        text-transform: uppercase;
+      }
+
+      input {
+        width: 100%;
+        padding: 15px 16px;
+        border: 1px solid #efd5db;
+        border-radius: 13px;
+        outline: none;
+        background: #fffafb;
+        color: var(--ink);
+        font: inherit;
+        text-align: center;
+        transition:
+          border 0.2s,
+          box-shadow 0.2s;
+      }
+
+      input:focus {
+        border-color: var(--pink);
+        box-shadow: 0 0 0 4px #fbe8ec;
+      }
+
+      button {
+        border: 0;
+        cursor: pointer;
+        font: inherit;
+        transition:
+          transform 0.2s,
+          background 0.2s,
+          box-shadow 0.2s;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+      }
+
+      .unlock-button {
+        width: 100%;
+        margin-top: 13px;
+        padding: 15px;
+        border-radius: 13px;
+        background: var(--pink);
+        color: white;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        box-shadow: 0 8px 18px rgba(189, 120, 136, 0.18);
+      }
+
+      .unlock-button:hover {
+        background: var(--pink-dark);
+      }
+
+      .error {
+        min-height: 18px;
+        margin: 12px 0 0;
+        color: #c16e7e;
+        font-size: 12px;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      .surprise-heading {
+        margin-bottom: 8px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(32px, 7vw, 46px);
+        font-weight: 400;
+      }
+
+      .surprise-copy {
+        margin: 0 auto 25px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .link-list {
+        display: grid;
+        gap: 12px;
+        text-align: left;
+      }
+
+      .surprise-link {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        width: 100%;
+        padding: 16px;
+        border: 1px solid #f2dce1;
+        border-radius: 16px;
+        background: #fffafb;
+        color: var(--ink);
+        text-decoration: none;
+      }
+
+      .surprise-link:hover {
+        border-color: var(--pink);
+        background: var(--pink-pale);
+      }
+
+      .link-icon {
+        display: grid;
+        width: 42px;
+        height: 42px;
+        flex: 0 0 42px;
+        place-items: center;
+        border-radius: 13px;
+        background: #fbe7eb;
+        font-size: 19px;
+      }
+
+      .link-text strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 13px;
+      }
+
+      .link-text span {
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .arrow {
+        margin-left: auto;
+        color: var(--pink-dark);
+        font-size: 20px;
+      }
+
+      .footer {
+        margin-top: 24px;
+        color: #b99fa3;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 13px;
+      }
+
+      @media (max-width: 480px) {
+        .panel {
+          padding: 24px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <p class="tiny-label">a small suprai for my baby</p>
+      <h1 id="mainTitle">Hi Honeyybeeee ♡</h1>
+      <p class="subtitle" id="mainSubtitle">
+        vk chip san sang cho mon qua sinh nhat 2026 chuaaaaaa
+      </p>
+
+      <!-- PASSWORD SCREEN -->
+      <section class="panel" id="passwordScreen">
+        <div class="heart">♡</div>
+        <form id="passwordForm">
+          <label for="passwordInput">Password</label>
+          <input
+            id="passwordInput"
+            type="password"
+            placeholder="Type the password..."
+            autocomplete="off"
+          />
+          <button class="unlock-button" type="submit">
+            UNLOCK MY SURPRISE ♡
+          </button>
+          <p class="error" id="errorMessage" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <!-- SURPRISE LINKS: hidden until the correct password is entered -->
+      <section class="panel hidden" id="surpriseScreen">
+        <div class="heart">୨୧</div>
+        <h2 class="surprise-heading">You found it!</h2>
+        <p class="surprise-copy">
+          Happy birthday, my love. Here are three little things I made for you.
+        </p>
+
+        <div class="link-list" id="linkList">
+          <!-- JavaScript adds the three links here -->
+        </div>
+      </section>
+
+      <p class="footer">made with lots of love ♡</p>
+    </main>
+
+    <script>
+      // 1. CHANGE THIS to the password you want her to enter.
+      const SECRET_PASSWORD = "1224";
+
+      // 2. CHANGE the titles and URLs to your own surprise links.
+      // Keep the quotation marks around the text and URL.
+      const surpriseLinks = [
+        {
+          icon: "🎀",
+          title: "Chipchip Project",
+          description: "Something special, made just for you",
+          url: "https://example.com/gift",
+        },
+        {
+          icon: "💌",
+          title: "A letter for you",
+          description: "A few words from me to you",
+          url: "https://example.com/letter",
+        },
+        {
+          icon: "🎧",
+          title: "Playlist cho vk",
+          description: "Songs that remind me of us",
+          url: "https://example.com/playlist",
+        },
+      ];
+
+      // 3. Find the parts of the page that JavaScript needs to control.
+      const passwordForm = document.getElementById("passwordForm");
+      const passwordInput = document.getElementById("passwordInput");
+      const errorMessage = document.getElementById("errorMessage");
+      const passwordScreen = document.getElementById("passwordScreen");
+      const surpriseScreen = document.getElementById("surpriseScreen");
+      const linkList = document.getElementById("linkList");
+      const mainTitle = document.getElementById("mainTitle");
+      const mainSubtitle = document.getElementById("mainSubtitle");
+
+      // 4. Listen for when she submits the password form.
+      passwordForm.addEventListener("submit", function (event) {
+        event.preventDefault(); // Stops the browser from refreshing the page.
+
+        const enteredPassword = passwordInput.value;
+
+        if (enteredPassword === SECRET_PASSWORD) {
+          // Correct password: hide the password screen and show the surprises.
+          passwordScreen.classList.add("hidden");
+          surpriseScreen.classList.remove("hidden");
+
+          mainTitle.textContent = "Happy Birthday vk thui ♡";
+          mainSubtitle.textContent = "1 vai bat ngo nho cho tyeu cua anh";
+          errorMessage.textContent = "";
+
+          showSurpriseLinks();
+        } else {
+          // Incorrect password: show a gentle error message.
+          errorMessage.textContent = "Not quite, try again sweetheart ♡";
+          passwordInput.value = "";
+          passwordInput.focus();
+        }
+      });
+
+      // 5. Create one clickable card for each link in the list above.
+      function showSurpriseLinks() {
+        linkList.innerHTML = "";
+
+        surpriseLinks.forEach(function (item) {
+          const link = document.createElement("a");
+          link.className = "surprise-link";
+          link.href = item.url;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+
+          link.innerHTML = `
+          <span class="link-icon">${item.icon}</span>
+          <span class="link-text">
+            <strong>${item.title}</strong>
+            <span>${item.description}</span>
+          </span>
+          <span class="arrow">↗</span>
+        `;
+
+          linkList.appendChild(link);
+        });
+      }
+    </script>
+  </body>
+</html>
